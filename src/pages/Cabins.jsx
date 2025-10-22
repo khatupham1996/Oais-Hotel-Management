@@ -1,0 +1,43 @@
+import { useState } from "react";
+import Heading from "../ui/Heading";
+import Row from "../ui/Row";
+
+import CabinTable from "../features/cabins/CabinTable";
+import CreateCabinForm from "../features/cabins/CreateCabinForm";
+import Button from "../ui/Button";
+import CabinTableOperations from "../features/cabins/CabinTableOperations";
+
+function Cabins() {
+  const [showForm, setShowForm] = useState(false);
+
+  return (
+    <>
+      <Row type="horizontal">
+        <Heading as="h1">All cabins</Heading>
+        <CabinTableOperations />
+      </Row>
+
+      <Row>
+        <CabinTable />
+      </Row>
+
+      <Row>
+        <Button
+          onClick={() => setShowForm((show) => !show)}
+          style={{ width: "100%" }}
+        >
+          Add new cabin
+        </Button>
+      </Row>
+
+      {/* Put the form in its own row */}
+      {showForm && (
+        <Row>
+          <CreateCabinForm />
+        </Row>
+      )}
+    </>
+  );
+}
+
+export default Cabins;
